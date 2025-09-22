@@ -2,7 +2,7 @@
 MiniGPT for Wine Review Generation
 Trains a small GPT-style model on wine review descriptions
 Includes tokenization, vocabulary building, sequence padding, and sampling
-Demonstrates token generation with temperature, top-k, and top-p (nucleus) sampling
+Token generation with temperature, top-k, and top-p (nucleus) sampling
 
 ├── data/
 │   └── winemag-data-130k-v2.json          # Raw wine review dataset (JSON)
