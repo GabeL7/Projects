@@ -5,9 +5,8 @@ Evaluates performance on train and dev sets from the triage dataset
 
 ├── util.py
 └── data/
-    └── triage/
-        ├── train.csv
-        └── dev.csv
+    ├── train.csv
+    └── dev.csv
 util.py -> load_data, Classifier, Example, evaluate, remove_stop_words
 train.csv, dev.csv -> training set and testing/validation set respectively
 
@@ -26,7 +25,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from util import load_data, Classifier, Example, evaluate, remove_stop_words
 
 # Load the dataset
-dataset = load_data("./data/triage")
+dataset = load_data("./data")
 
 # Sigmoid function applied element-wise to input array x
 def sigmoid(x: np.ndarray) -> np.ndarray:
