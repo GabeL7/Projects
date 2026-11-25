@@ -1,12 +1,18 @@
+
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.css',
+  imports: [ButtonModule],
   templateUrl: './app.html',
+  styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('financial-platform');
+  protected readonly status = signal('Frontend initialized.');
+
+  protected testPrimeNG() {
+    this.status.set('PrimeNG Button Test');
+  }
 }
+  
