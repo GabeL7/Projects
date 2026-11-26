@@ -1,16 +1,15 @@
+
 # Financial Document Analysis Platform — Backend
 
 The ASP.NET Core Web API backend for the Financial Document Analysis & Reporting Platform.
 
-**Status:** Initial API Setup Completed
+**Status:** Initial API and Angular Integration Completed
 
 ## Overview
 
-This backend is built using C# and ASP.NET Core Web API on .NET 10.
+The backend is built with C# and ASP.NET Core Web API on .NET 10. It currently exposes a health-check endpoint that the Angular frontend calls through an HTTP service.
 
-It will eventually manage financial documents, business logic, financial data processing, authentication, database operations, and reporting.
-
-The initial backend setup is complete, with a working REST API endpoint that has been built and tested locally.
+Future development will add document management, financial processing, database access, authentication, and reporting endpoints.
 
 ## Technology Stack
 
@@ -18,25 +17,27 @@ The initial backend setup is complete, with a working REST API endpoint that has
 |---|---|
 | Language | C# |
 | Framework | ASP.NET Core Web API |
-| .NET Version | .NET 10 (LTS) |
-| API Architecture | Controller-Based REST API |
-| Data Format | JSON |
-| API Documentation | OpenAPI Support |
+| Target Framework | .NET 10 (LTS) |
+| API Architecture | Controller-based REST API |
+| Response Format | JSON |
+| Local Transport | HTTP and HTTPS |
 | Development IDE | Visual Studio |
-| Database | Microsoft SQL Server (Planned) |
-| ORM | Entity Framework Core (Planned) |
-| Authentication | JWT (Planned) |
-| Authorization | Role-Based Authorization (Planned) |
+| API Description | OpenAPI support |
+| Database (Planned) | Microsoft SQL Server |
+| Data Access (Planned) | Entity Framework Core |
+| Security (Planned) | JWT authentication, role-based authorization |
 
 ## Implemented Features
 
-- ASP.NET Core Web API project initialization
-- Controller-based API architecture
-- HTTPS development configuration
+- ASP.NET Core Web API project setup
+- Controller-based routing
+- Local HTTPS development configuration
 - OpenAPI support
-- Health-check API endpoint
-- JSON API responses
-- Successful local build and execution
+- `HealthController` with a working HTTP GET endpoint
+- JSON response with backend status and application information
+- CORS policy allowing the Angular development origin
+- Successful API build, startup, and browser verification
+- Successful cross-origin request from the Angular frontend
 
 ## Project Structure
 
@@ -49,41 +50,48 @@ backend/
 │   │   └── launchSettings.json
 │   ├── Program.cs
 │   ├── appsettings.json
-│   └── FinancialPlatform.Api.csproj
+│   ├── appsettings.Development.json
+│   ├── FinancialPlatform.Api.csproj
+│   ├── FinancialPlatform.Api.slnx
+│   └── FinancialPlatform.Api.http
 └── README.md
 ```
-
-Visual Studio also generates supporting project and solution files.
 
 ## Getting Started
 
 ### Prerequisites
 
 - .NET 10 SDK
-- Visual Studio 2026
-- ASP.NET and web development workload
+- Visual Studio 2026 with the ASP.NET and web development workload
 
-### Build the Application
+### Build and Run
 
-Open the API project or solution in Visual Studio.
+1. Open `FinancialPlatform.Api/FinancialPlatform.Api.slnx` in Visual Studio.
+2. Build the solution with `Ctrl + Shift + B`.
+3. Press `F5` to run the API.
+4. Use the configured local HTTPS address to test the endpoint.
 
-Select:
+Example local addresses from the current development setup:
 
-**Build → Build Solution**
+```text
+https://localhost:7174
+http://localhost:5255
+```
 
-Or press:
+Ports may vary with the local launch configuration.
 
-`Ctrl + Shift + B`
+## Available Endpoint
 
-### Run the Application
+### Health Check
 
-Press `F5` in Visual Studio.
+| Property | Value |
+|---|---|
+| Method | GET |
+| Route | `/api/health` |
+| Success Response | HTTP 200 |
+| Content Type | JSON |
 
-The application starts using the locally configured HTTP and HTTPS addresses.
-
-### Test the API
-
-Open the following URL while the backend is running:
+Example request:
 
 ```text
 https://localhost:7174/api/health
@@ -99,49 +107,36 @@ Example response:
 }
 ```
 
-Port numbers may vary by development environment.
+## Angular Integration and CORS
 
-## API Endpoints
+The Angular development server runs at `http://localhost:4200`, while the backend uses its own local HTTPS address. These addresses are different browser origins, so the backend has a CORS policy configured in `Program.cs`.
 
-### Health Check
+The current development policy permits requests from:
 
-**Method:** GET
+```text
+http://localhost:4200
+```
 
-**Route:** `/api/health`
+It allows HTTP methods and headers needed for the initial frontend API calls. The policy is registered and applied to controller routes through the ASP.NET Core middleware pipeline.
 
-**Purpose:** Verifies that the backend application is operational.
-
-**Response:** HTTP 200 with a JSON status message.
+The frontend uses `HealthService` to call `/api/health` and display the response. The end-to-end request has been tested successfully in the browser.
 
 ## Planned Features
 
-- Financial document management endpoints
-- CSV, Excel, JSON, and PDF processing
-- Financial analysis services
-- SQL Server database integration
-- Entity Framework Core models and migrations
+- Financial document CRUD endpoints
+- Financial data extraction and processing services
+- SQL Server database configuration
+- Entity Framework Core models, migrations, and queries
+- Financial calculation and reporting services
 - Authentication and role-based authorization
-- Report generation and exports
-- Input validation and exception handling
+- Request validation and consistent error responses
 - Automated unit and integration tests
-- Application logging and deployment configuration
+- Deployment configuration
 
-## Frontend Integration
+## Development Progress
 
-The Angular frontend will communicate with the backend through HTTP requests.
+- **Web API setup and health endpoint:** Completed
+- **Angular integration and development CORS configuration:** Completed Locally
+- **SQL Server and Entity Framework Core:** Next
 
-Cross-origin resource sharing (CORS) and Angular HTTP services will be configured during the next development milestone.
-
-## Development Practices
-
-- Use controllers for HTTP request handling
-- Separate business logic into services as functionality expands
-- Use dependency injection for application services
-- Validate incoming data
-- Avoid committing credentials or connection-string secrets
-- Add tests as application features are implemented
-- Maintain clear documentation for API endpoints
-
-## Project Purpose
-
-To demonstrate backend development using C#, ASP.NET Core, REST APIs, and eventually Entity Framework Core and SQL Server in a full-stack financial analysis application.
+See the [main project README](../README.md) and [Development Log](../docs/Development%20Log.md) for project-wide progress.

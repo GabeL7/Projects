@@ -7,6 +7,7 @@
 
   <section class="dashboard">
     <h2>Dashboard</h2>
+
     <p>Welcome to the financial analysis platform.</p>
     <p>Document management and financial reports are coming soon.</p>
 
@@ -17,5 +18,17 @@
 
     <p>{{ status() }}</p>
   </section>
+
+  <section class="dashboard">
+    <h2>Backend Connection</h2>
+
+    <p>Test the connection to the ASP.NET Core Web API.</p>
+
+    <p-button
+      label="Test Backend Connection"
+      (onClick)="testBackend()"
+    />
+
+    <p>{{ apiStatus() }}</p>
+  </section>
 </main>
-  

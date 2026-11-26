@@ -1,83 +1,66 @@
+
 # Financial Document Analysis Platform — Frontend
 
 The Angular frontend for the Financial Document Analysis & Reporting Platform.
 
-**Status:** Initial Frontend and PrimeNG Integration Completed
+**Status:** Initial Interface and Backend Integration Completed
 
 ## Overview
 
-This frontend application is built using Angular 22, TypeScript, CSS, RxJS, and PrimeNG.
+This application uses Angular 22, TypeScript, RxJS, and PrimeNG to provide the user interface for the platform. Its initial dashboard includes a PrimeNG component test and a live connection test for the ASP.NET Core backend.
 
-It will provide the user interface for managing financial documents, viewing financial dashboards, analyzing company performance, and generating reports.
-
-The initial application setup is complete, and the PrimeNG component library has been integrated successfully.
+The backend connection is implemented with Angular's `HttpClient` and a dedicated service rather than direct HTTP logic in the template.
 
 ## Technology Stack
 
 | Category | Technology |
 |---|---|
-| Frontend Framework | Angular 22 |
+| Framework | Angular 22 |
 | Language | TypeScript |
 | Markup and Styling | HTML, CSS |
-| UI Components | PrimeNG |
-| UI Theme | Aura |
+| Components | PrimeNG 22 |
+| Theme | Aura |
 | Icons | PrimeIcons |
-| Reactive Programming | RxJS |
 | Routing | Angular Router |
-| Testing Framework | Vitest |
+| HTTP Communication | Angular `HttpClient` |
+| Reactive Programming | RxJS, Angular signals |
+| Testing | Vitest-based Angular setup; feature tests planned |
 | Package Management | npm |
-| Version Control | Git, GitHub |
 
 ## Implemented Features
 
-- Angular application initialization
-- Standalone Angular component architecture
-- Angular routing configuration
-- CSS styling
-- PrimeNG integration
-- Aura theme configuration
-- Initial application layout
-- Interactive PrimeNG button
-- Working local development server
-- Successful Angular production build
-
-## Planned Features
-
-- Reusable application navigation
-- Financial dashboard with KPI cards
-- Financial document management interface
-- Data tables with searching, filtering, and sorting
-- Financial charts and visualizations
-- Company and reporting-period comparisons
-- Document upload interface
-- User login and authentication
-- Role-based navigation and permissions
-- REST API integration
-- Loading indicators and error handling
-- Responsive interface design
+- Angular application initialization and standalone component configuration
+- Angular routing and CSS styling
+- PrimeNG provider and Aura theme registration
+- Initial dashboard layout with PrimeNG buttons
+- Button interaction that updates frontend status
+- Angular `HttpClient` provider configuration
+- Typed `HealthResponse` interface
+- Reusable `HealthService` for API requests
+- Backend connection button that calls `GET /api/health`
+- Display of the backend's response or a connection-error message
+- Successful local development-server and production-build verification
 
 ## Project Structure
 
 ```text
 frontend/
-├── public/
 ├── src/
-│   ├── app/
-│   │   ├── app.ts
-│   │   ├── app.html
-│   │   ├── app.css
-│   │   ├── app.config.ts
-│   │   └── app.routes.ts
-│   ├── index.html
-│   ├── main.ts
-│   └── styles.css
+│   └── app/
+│       ├── services/
+│       │   └── health.service.ts
+│       ├── app.config.ts
+│       ├── app.ts
+│       ├── app.html
+│       ├── app.css
+│       └── app.routes.ts
 ├── angular.json
 ├── package.json
 ├── package-lock.json
 └── README.md
 ```
 
-Additional folders for components, pages, services, and models will be introduced as development progresses.
+This is a summary of the key application files, not a complete listing.
 
 ## Getting Started
 
@@ -85,7 +68,7 @@ Additional folders for components, pages, services, and models will be introduce
 
 - Node.js compatible with Angular 22
 - npm
-- Angular CLI
+- Angular CLI 22
 
 ### Install Dependencies
 
@@ -95,87 +78,78 @@ From the `frontend` directory:
 npm install
 ```
 
-### Run the Development Server
+### Start the Development Server
 
 ```powershell
 npm start
 ```
 
-Alternatively:
+Open `http://localhost:4200`.
 
-```powershell
-ng serve
-```
-
-Open `http://localhost:4200/` in your browser.
-
-The application automatically reloads when source files change.
-
-### Build the Application
+### Build
 
 ```powershell
 npm run build
 ```
 
-### Run Unit Tests
+### Unit Tests
 
 ```powershell
 npm test
 ```
 
-The project uses Angular's generated Vitest testing setup. Additional tests will be developed as application functionality is implemented.
+Additional automated tests will be implemented as application features are added.
 
-## PrimeNG Configuration
+## Backend Connection
 
-PrimeNG provides reusable UI components for the application.
+The frontend currently calls the ASP.NET Core health-check endpoint:
 
-The initial configuration includes:
+```text
+GET https://localhost:7174/api/health
+```
 
-- PrimeNG packages installed through npm
-- Aura theme configured in `app.config.ts`
-- Global PrimeNG configuration using `providePrimeNG()`
-- Button component imported into the Angular application
-- Functional button interaction verified in the browser
+The URL is configured in `src/app/services/health.service.ts`. If the backend uses a different local port, update the service accordingly. Environment-specific API configuration will be introduced in a later milestone.
 
-PrimeNG will also support future components such as tables, charts, dialogs, menus, forms, and notifications.
+### How It Works
 
-Any required PrimeNG licensing credentials must be kept outside the public GitHub repository.
+1. Angular registers `provideHttpClient()` in `app.config.ts`.
+2. `HealthService` uses `HttpClient` to request `/api/health`.
+3. The root component triggers the request when **Test Backend Connection** is clicked.
+4. The response updates an Angular signal displayed in the template.
+5. If the API cannot be reached, the interface displays a connection-error message.
 
-## Backend Integration
+### Run the Full-Stack Test
 
-The frontend will communicate with the ASP.NET Core Web API through HTTP requests using JSON.
+1. Start `FinancialPlatform.Api` in Visual Studio using `F5`.
+2. Start the Angular development server with `npm start`.
+3. Open `http://localhost:4200`.
+4. Click **Test Backend Connection**.
 
-Planned integrations include financial document management, data analysis, authentication, authorization, and reporting.
+Expected message:
 
-Backend API integration has not yet been implemented.
+```text
+Connected: Backend API is running.
+```
+
+The backend must be running, its HTTPS development certificate must be trusted, and its CORS policy must allow `http://localhost:4200`.
+
+## Planned Features
+
+- Reusable navigation and layout components
+- Document upload and management interface
+- Financial KPI cards and interactive charts
+- Searchable, filterable financial data tables
+- Form validation and notifications
+- Login and role-based navigation
+- Additional API services for documents, analysis, and reporting
+- Automated component and service tests
+- Environment-specific API configuration
 
 ## Development Progress
 
-### Completed
+- **Angular initialization:** Completed
+- **PrimeNG integration:** Completed
+- **Backend connection using `HttpClient`:** Completed Locally
+- **Database-backed features:** Next phase
 
-- Angular CLI project generation
-- Frontend routing and styling setup
-- PrimeNG installation and configuration
-- Initial application interface
-- Component interaction testing
-- Successful application build
-
-### Next Steps
-
-- Create the ASP.NET Core backend
-- Implement the first REST API endpoint
-- Connect Angular to backend responses
-- Expand the frontend with reusable components
-
-## Development Practices
-
-- Build and test features incrementally
-- Use meaningful Git commits
-- Keep dependencies tracked through `package.json` and `package-lock.json`
-- Exclude `node_modules/` and generated build files from Git
-- Avoid committing secrets or private credentials
-- Document completed features and technical decisions
-
-## Project Purpose
-
-To demonstrate Angular development, reusable UI components, application architecture, frontend testing, and integration with a production-style backend.
+See the [main project README](../README.md) and [Development Log](../docs/Development%20Log.md) for the full roadmap.
