@@ -1,110 +1,148 @@
 # Financial Document Analysis & Reporting Platform
 
-A full-stack web application designed to manage financial documents, extract structured financial information, analyze company performance, and generate interactive dashboards and reports.
+A full-stack web application for managing financial documents, analyzing financial data, visualizing company performance, and generating financial reports.
 
-**Project Status:** In Development — Frontend Initialized
+**Project Status:** In Development — Frontend and Backend Initialized
 
 ## Overview
 
-This independent portfolio project demonstrates full-stack software engineering using Angular, TypeScript, PrimeNG, C#, ASP.NET Core, Entity Framework Core, and Microsoft SQL Server.
+The Financial Document Analysis & Reporting Platform is a full-stack application built with Angular, TypeScript, PrimeNG, C#, ASP.NET Core, and Microsoft SQL Server.
 
-The application is being developed incrementally, beginning with the frontend, backend, and database architecture before introducing financial document processing, data analysis, authentication, and reporting.
+The platform is designed to streamline financial document management and analysis through structured data extraction, interactive dashboards, financial calculations, and automated reporting.
 
-The Angular frontend has been initialized, PrimeNG has been integrated with the Aura theme, and an initial interactive interface has been implemented and tested locally.
+Development follows an incremental approach, beginning with frontend and backend infrastructure before implementing database integration, document processing, financial analytics, and reporting features.
 
-## Planned Features
+## Features
+
+### Implemented
+
+- Angular 22 frontend application
+- PrimeNG component library with Aura theme
+- Initial responsive application layout
+- Interactive frontend components
+- ASP.NET Core Web API using .NET 10
+- Controller-based REST API architecture
+- HTTPS development configuration
+- Functional API health-check endpoint
+- JSON API responses
+- Local frontend and backend development environments
+
+### Planned
 
 - Financial document upload and management
-- Financial data extraction from CSV, Excel, JSON, and PDF files
-- Revenue, expense, profit, and financial ratio analysis
-- Interactive financial dashboards
+- CSV, Excel, JSON, and PDF document processing
+- Financial data extraction and validation
+- Revenue, expense, and profitability analysis
+- Financial ratios and performance indicators
+- Interactive financial dashboards and charts
 - Company and reporting-period comparisons
 - User authentication and role-based authorization
-- SQL-based financial reporting
-- PDF, Excel, and JSON exports
-- Validation and manual review of unrecognized financial data
+- SQL Server database integration
+- PDF, Excel, and JSON report exports
+- Automated testing and deployment
 
 ## Technology Stack
 
 | Layer | Technologies |
 |---|---|
 | Frontend | Angular 22, TypeScript, HTML, CSS |
-| UI | PrimeNG, PrimeIcons, Aura Theme |
+| UI Components | PrimeNG, PrimeIcons, Aura Theme |
 | Reactive Programming | RxJS |
-| Backend | C#, ASP.NET Core Web API |
-| Database | Microsoft SQL Server |
-| Data Access | Entity Framework Core, LINQ, SQL |
-| API | REST / JSON |
-| Security | JWT authentication, role-based authorization |
-| Testing | Angular/Vitest, .NET tests |
-| Version Control | Git, GitHub |
+| Backend | C#, ASP.NET Core Web API, .NET 10 |
+| API Communication | REST, HTTP, JSON |
+| Database | Microsoft SQL Server (Planned) |
+| Data Access | Entity Framework Core, LINQ, SQL (Planned) |
+| Security | JWT Authentication, Role-Based Authorization (Planned) |
+| Testing | Vitest, .NET Testing Frameworks |
 | Development Tools | Visual Studio, VS Code, SSMS |
-| Deployment | Planned for a later phase |
+| Version Control | Git, GitHub |
 
-Backend, database, security, and reporting technologies are planned for future milestones.
+## Application Architecture
 
-## Project Roadmap
+The application follows a frontend-backend architecture with a separate database layer.
 
-- Set up development environment — Completed
-- Create GitHub repository and project structure — Completed
-- Initialize Angular frontend — Completed
-- Integrate PrimeNG components — Completed
-- Create ASP.NET Core REST API — Not Started
-- Connect Angular to the backend — Not Started
-- Configure SQL Server and Entity Framework Core — Not Started
-- Implement document management
-- Implement financial data extraction
-- Build financial dashboards
-- Add authentication and authorization
-- Implement reporting and exports
-- Add automated tests
-- Deploy the application
+```text
+Angular Frontend
+    |
+    | HTTP / REST API
+    |
+ASP.NET Core Web API
+    |
+    | Entity Framework Core
+    |
+Microsoft SQL Server
+```
 
-## Architecture
+### Frontend
 
-**Frontend:** Angular + TypeScript + PrimeNG + RxJS
+The Angular application provides the interface for financial document management, data visualization, reporting, and user interaction.
 
-**Backend (Planned):** ASP.NET Core Web API + C#
+PrimeNG provides reusable UI components and consistent styling.
 
-**Data Access (Planned):** Entity Framework Core + LINQ + SQL
+### Backend
 
-**Database (Planned):** Microsoft SQL Server
+The ASP.NET Core Web API handles incoming HTTP requests and will manage business logic, financial processing, document operations, and reporting.
 
-The Angular frontend will communicate with the ASP.NET Core backend through REST APIs. The backend will manage business logic, financial document processing, authentication, and database operations.
+The backend currently includes a functional health-check endpoint.
 
-## Development Progress
+### Database
 
-### Completed
+Microsoft SQL Server and Entity Framework Core will be integrated to store financial documents, extracted financial information, application users, and reporting data.
 
-- Configured Git and the initial development environment
-- Established the project structure inside the existing GitHub Projects repository
-- Created project documentation and Git ignore rules
-- Generated the Angular 22 frontend application
-- Configured Angular routing and CSS styling
-- Integrated PrimeNG with the Aura theme
-- Created an initial frontend interface
-- Added an interactive PrimeNG button
-- Verified the frontend runs locally
-- Successfully built the Angular application
+Database connectivity and persistence will be implemented in a future milestone.
 
-### Next Milestone
+## Project Structure
 
-Create the ASP.NET Core Web API backend and implement an initial endpoint.
+```text
+Financial Document Analysis Platform/
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   └── app/
+│   ├── angular.json
+│   ├── package.json
+│   ├── package-lock.json
+│   └── README.md
+│
+├── backend/
+│   ├── FinancialPlatform.Api/
+│   │   ├── Controllers/
+│   │   │   └── HealthController.cs
+│   │   ├── Properties/
+│   │   │   └── launchSettings.json
+│   │   ├── Program.cs
+│   │   ├── appsettings.json
+│   │   └── FinancialPlatform.Api.csproj
+│   └── README.md
+│
+├── docs/
+│   └── Development Log.md
+│
+├── .gitignore
+└── README.md
+```
 
-Detailed progress is recorded in [Development Log](docs/Development%20Log.md).
+Additional directories and components will be introduced as development progresses.
 
 ## Getting Started
 
 ### Prerequisites
 
+Frontend:
+
 - Node.js compatible with Angular 22
 - npm
 - Angular CLI
-- Git
 
-### Run the Frontend
+Backend:
 
-Navigate to the `frontend` directory:
+- .NET 10 SDK
+- Visual Studio 2026
+- ASP.NET and web development workload
+
+### Running the Frontend
+
+From the main project directory, navigate to the Angular application:
 
 ```powershell
 cd frontend
@@ -122,24 +160,108 @@ Start the development server:
 npm start
 ```
 
-Open `http://localhost:4200/` in your browser.
+Open:
 
-### Build the Frontend
+```text
+http://localhost:4200
+```
+
+### Building the Frontend
 
 ```powershell
 npm run build
 ```
 
-Backend and database instructions will be added when those components are implemented.
+### Running the Backend
+
+1. Open the `FinancialPlatform.Api` solution in Visual Studio.
+2. Build the solution using `Ctrl + Shift + B`.
+3. Press `F5` to launch the backend.
+4. Open the health-check endpoint in a browser.
+
+Example local endpoint:
+
+```text
+https://localhost:7174/api/health
+```
+
+Port numbers may vary depending on the local development configuration.
+
+## API Endpoints
+
+### Health Check
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/health` | Verifies that the backend API is running |
+
+**Example Response:**
+
+```json
+{
+  "status": "ok",
+  "application": "Financial Document Analysis Platform",
+  "message": "Backend API is running."
+}
+```
+
+Additional REST API endpoints will be implemented for financial documents, data analysis, reporting, and user management.
+
+## Development Roadmap
+
+- **Milestone 1 — Development Environment:** Completed
+- **Milestone 2 — Repository Setup:** Completed
+- **Milestone 3 — Angular Frontend Initialization:** Completed
+- **Milestone 4 — PrimeNG Integration:** Completed
+- **Milestone 5 — ASP.NET Core Web API:** Completed Locally
+- **Milestone 6 — Frontend and Backend Integration:** Next
+- **Milestone 7 — SQL Server and Entity Framework Core:** Not Started
+- **Milestone 8 — Document Management:** Not Started
+- **Milestone 9 — Financial Data Processing:** Not Started
+- **Milestone 10 — Financial Dashboards:** Not Started
+- **Milestone 11 — Authentication and Authorization:** Not Started
+- **Milestone 12 — Reporting and Exports:** Not Started
+- **Milestone 13 — Advanced Document Extraction:** Not Started
+- **Milestone 14 — Testing, Polish, and Deployment:** Not Started
+
+## Current Development Progress
+
+### Frontend
+
+- Angular application created and configured
+- Angular routing enabled
+- PrimeNG installed and configured
+- Aura theme integrated
+- Initial dashboard interface created
+- PrimeNG button interaction tested
+- Development server and production build verified
+
+### Backend
+
+- ASP.NET Core Web API created using .NET 10
+- Controller-based API architecture configured
+- HTTPS development environment established
+- OpenAPI support enabled
+- Health-check controller implemented
+- Backend successfully built and launched in Visual Studio
+- API endpoint tested and verified in the browser
+
+### Next Steps
+
+Connect the Angular frontend to the ASP.NET Core backend using Angular's HTTP client, configure CORS, and display data retrieved from the API.
+
+## Documentation
+
+- [Frontend Documentation](frontend/README.md)
+- [Backend Documentation](backend/README.md)
+- [Development Log](docs/Development%20Log.md)
+
+The Development Log contains milestone details, completed tasks, testing results, and upcoming work.
 
 ## Screenshots and Demo
 
-The initial frontend interface is operational locally.
-
-Screenshots of the financial dashboard and a live demonstration will be added as the application develops.
+Screenshots of the financial dashboard and a live application demonstration will be added as development progresses.
 
 ## Project Purpose
 
-To demonstrate the design, development, testing, and eventual deployment of an enterprise-style full-stack application using modern software engineering practices.
-
-This project is independently developed using original source code and synthetic or publicly available financial data.
+This project demonstrates full-stack software engineering through the design, development, testing, and deployment of a financial document analysis and reporting application.

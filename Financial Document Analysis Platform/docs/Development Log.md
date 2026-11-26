@@ -19,9 +19,9 @@ This document tracks the development milestones, completed tasks, testing result
 
 ### Result
 
-The development environment is configured for Angular frontend development.
+The development environment is configured for Angular frontend and ASP.NET Core backend development.
 
-Backend tooling and SQL Server connectivity will be verified during later milestones.
+SQL Server connectivity will be verified during the database milestone.
 
 ---
 
@@ -33,29 +33,20 @@ Backend tooling and SQL Server connectivity will be verified during later milest
 
 - Organized the Financial Document Analysis Platform inside the existing Projects repository
 - Cloned the GitHub repository to the local computer
-- Created the project README
+- Created the main project README
 - Created the project-specific `.gitignore`
 - Created the `docs` directory and Development Log
-- Successfully committed and pushed the initial project documentation
-
-### Git Commands Used
-
-```powershell
-git status
-git add README.md .gitignore docs/
-git commit -m "Add financial analysis platform documentation and setup"
-git push
-```
+- Successfully committed and pushed the initial documentation
 
 ### Result
 
-The project is available on GitHub with its initial documentation and development roadmap.
+The project is maintained in GitHub with documentation and a development roadmap.
 
 ---
 
 ## Milestone 3 — Angular Frontend Initialization
 
-**Status: Completed Locally**
+**Status: Completed**
 
 ### Tasks
 
@@ -66,7 +57,6 @@ The project is available on GitHub with its initial documentation and developmen
 - Disabled server-side rendering for the initial setup
 - Used the existing Git repository instead of creating a nested repository
 - Configured the frontend for local development
-- Successfully launched the Angular application
 
 ### Angular Setup Command
 
@@ -83,17 +73,13 @@ ng new financial-platform --directory frontend --routing --style=css --ssr=false
 
 ### Result
 
-A functioning Angular 22 frontend application has been created.
+A functioning Angular 22 frontend application was created and committed to GitHub.
 
 ---
 
 ## Milestone 4 — PrimeNG Integration and Initial Interface
 
-**Status: Completed Locally**
-
-### Objective
-
-Integrate PrimeNG into the Angular application and create an initial interface to verify component rendering, styling, and Angular interaction.
+**Status: Completed**
 
 ### Tasks
 
@@ -115,17 +101,9 @@ Integrate PrimeNG into the Angular application and create an initial interface t
 npm install primeng@22 @primeuix/themes primeicons
 ```
 
-### Configuration
-
-PrimeNG is registered in:
-
-`frontend/src/app/app.config.ts`
-
-The configuration uses `providePrimeNG()` with the Aura theme.
-
 ### Testing Results
 
-- PrimeNG integration functions in the Angular application
+- PrimeNG components render in the Angular application
 - Aura theme is configured
 - Custom application page displays in the browser
 - PrimeNG button renders successfully
@@ -134,49 +112,137 @@ The configuration uses `providePrimeNG()` with the Aura theme.
 
 ### Result
 
-The Angular frontend now contains a functional initial interface with PrimeNG component integration.
+The Angular frontend contains a functional initial interface with PrimeNG integration.
 
-### GitHub
-
-The current frontend implementation and documentation updates are ready for the next Git commit and push.
+The implementation and documentation were committed to GitHub.
 
 ---
 
 ## Milestone 5 — ASP.NET Core Web API
 
+**Status: Completed Locally**
+
+### Objective
+
+Create a C# ASP.NET Core backend, configure the development environment, implement an initial REST API endpoint, and verify that the application runs successfully.
+
+### Tasks
+
+- Created the ASP.NET Core Web API project in Visual Studio
+- Selected .NET 10 (Long Term Support)
+- Selected controller-based API architecture
+- Configured HTTPS for local development
+- Enabled OpenAPI support
+- Disabled container support because Docker was not required for the initial implementation
+- Used no authentication during initial setup
+- Configured and trusted the local ASP.NET Core development certificate
+- Built and launched the API successfully
+- Created `HealthController.cs`
+- Implemented an HTTP GET health-check endpoint
+- Verified the API returns a successful JSON response
+
+### Development Environment
+
+- Language: C#
+- Framework: ASP.NET Core Web API
+- Target Framework: .NET 10
+- IDE: Visual Studio
+- Project: `FinancialPlatform.Api`
+
+### Backend Location
+
+```text
+backend/FinancialPlatform.Api/
+```
+
+### API Endpoint
+
+**Method:** GET
+
+**Route:** `/api/health`
+
+**Local HTTPS URL:**
+
+```text
+https://localhost:7174/api/health
+```
+
+### Expected Response
+
+```json
+{
+  "status": "ok",
+  "application": "Financial Document Analysis Platform",
+  "message": "Backend API is running."
+}
+```
+
+### Testing Results
+
+- Visual Studio solution built successfully
+- Application launched successfully using F5
+- Backend started in the Development environment
+- HTTPS server listened on `https://localhost:7174`
+- HTTP server listened on `http://localhost:5255`
+- Health-check controller responded successfully
+- JSON response was verified in the browser
+
+### Result
+
+A working ASP.NET Core Web API backend has been established using .NET 10.
+
+The application now has independently functioning frontend and backend projects.
+
+### GitHub
+
+Backend code and Milestone 5 documentation are ready to be committed and pushed.
+
+---
+
+## Milestone 6 — Frontend and Backend Integration
+
 **Status: Not Started**
 
 ### Objective
 
-Create the C# backend that will provide REST APIs for financial document management, data analysis, and reporting.
+Connect the Angular frontend to the ASP.NET Core backend through HTTP requests.
 
 ### Planned Tasks
 
-- Create ASP.NET Core Web API project
-- Configure the backend development environment
-- Organize backend files and folders
-- Implement the first REST API endpoint
-- Test API responses
-- Document backend setup
-- Commit and push backend files
+- Configure backend CORS for the Angular development server
+- Configure Angular HTTP client support
+- Create an Angular service for backend communication
+- Send an HTTP GET request to `/api/health`
+- Display the backend response in the frontend
+- Test the connection while both applications are running
+- Handle connection errors
+- Build both applications
+- Update documentation and push changes to GitHub
+
+---
+
+## Milestone 7 — Database Integration
+
+**Status: Not Started**
+
+### Planned Tasks
+
+- Configure Microsoft SQL Server
+- Install Entity Framework Core packages
+- Configure database connectivity
+- Create initial data models
+- Create and apply migrations
+- Test database operations
 
 ---
 
 ## Upcoming Milestones
 
-### Milestone 6 — Frontend and Backend Integration
-
-Connect Angular to ASP.NET Core using HTTP requests and REST APIs.
-
-### Milestone 7 — Database Integration
-
-Configure Microsoft SQL Server and Entity Framework Core.
-
 ### Milestone 8 — Document Management
 
 Implement document management, searching, filtering, and related CRUD functionality.
 
-### Milestone 9 — Financial Data Processingok&#x20;
+### Milestone 9 — Financial Data Processing
 
 Implement financial data extraction, validation, and storage.
 
