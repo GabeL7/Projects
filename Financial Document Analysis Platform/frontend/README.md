@@ -3,13 +3,17 @@
 
 The Angular frontend for the Financial Document Analysis & Reporting Platform.
 
-**Status:** Initial Interface and Backend Integration Completed
+**Status:** Frontend Initialization and Backend Integration Completed
 
 ## Overview
 
-This application uses Angular 22, TypeScript, RxJS, and PrimeNG to provide the user interface for the platform. Its initial dashboard includes a PrimeNG component test and a live connection test for the ASP.NET Core backend.
+The frontend is built with Angular 22, TypeScript, RxJS, and PrimeNG.
 
-The backend connection is implemented with Angular's `HttpClient` and a dedicated service rather than direct HTTP logic in the template.
+It provides the foundation for financial document management, interactive dashboards, data visualization, and reporting.
+
+The initial frontend interface is operational and communicates with the ASP.NET Core backend through Angular's HttpClient.
+
+Database integration has been completed on the backend. The frontend will use database-backed financial document endpoints in upcoming milestones.
 
 ## Technology Stack
 
@@ -18,28 +22,33 @@ The backend connection is implemented with Angular's `HttpClient` and a dedicate
 | Framework | Angular 22 |
 | Language | TypeScript |
 | Markup and Styling | HTML, CSS |
-| Components | PrimeNG 22 |
+| UI Components | PrimeNG |
 | Theme | Aura |
 | Icons | PrimeIcons |
 | Routing | Angular Router |
-| HTTP Communication | Angular `HttpClient` |
-| Reactive Programming | RxJS, Angular signals |
-| Testing | Vitest-based Angular setup; feature tests planned |
+| HTTP Communication | Angular HttpClient |
+| Reactive Programming | RxJS, Angular Signals |
+| Testing | Angular/Vitest Setup |
 | Package Management | npm |
+| Version Control | Git, GitHub |
 
 ## Implemented Features
 
-- Angular application initialization and standalone component configuration
-- Angular routing and CSS styling
-- PrimeNG provider and Aura theme registration
-- Initial dashboard layout with PrimeNG buttons
-- Button interaction that updates frontend status
-- Angular `HttpClient` provider configuration
-- Typed `HealthResponse` interface
-- Reusable `HealthService` for API requests
-- Backend connection button that calls `GET /api/health`
-- Display of the backend's response or a connection-error message
-- Successful local development-server and production-build verification
+- Angular standalone application
+- Angular routing configuration
+- CSS styling
+- PrimeNG component integration
+- Aura theme configuration
+- Initial dashboard layout
+- Interactive PrimeNG button
+- Angular HttpClient configuration
+- Reusable HealthService
+- Typed HealthResponse interface
+- Backend connection test
+- HTTP GET request to the ASP.NET Core API
+- Backend response displayed using Angular signals
+- Connection-error status message
+- Successful frontend build and browser testing
 
 ## Project Structure
 
@@ -60,7 +69,7 @@ frontend/
 └── README.md
 ```
 
-This is a summary of the key application files, not a complete listing.
+Additional folders for components, pages, models, and services will be added as frontend functionality expands.
 
 ## Getting Started
 
@@ -69,10 +78,11 @@ This is a summary of the key application files, not a complete listing.
 - Node.js compatible with Angular 22
 - npm
 - Angular CLI 22
+- Visual Studio Code
 
 ### Install Dependencies
 
-From the `frontend` directory:
+From the frontend directory:
 
 ```powershell
 npm install
@@ -84,46 +94,73 @@ npm install
 npm start
 ```
 
-Open `http://localhost:4200`.
+Open:
 
-### Build
+```text
+http://localhost:4200
+```
+
+### Build the Application
 
 ```powershell
 npm run build
 ```
 
-### Unit Tests
+### Run Unit Tests
 
 ```powershell
 npm test
 ```
 
-Additional automated tests will be implemented as application features are added.
+Automated tests will be expanded as additional application features are implemented.
 
-## Backend Connection
+## PrimeNG Configuration
 
-The frontend currently calls the ASP.NET Core health-check endpoint:
+PrimeNG provides reusable components and styling.
+
+The initial configuration includes:
+
+- PrimeNG provider registration in app.config.ts
+- Aura theme
+- ButtonModule
+- Interactive application controls
+
+Planned PrimeNG components include data tables, cards, charts, dialogs, forms, and navigation menus.
+
+## Backend Integration
+
+Angular uses HttpClient to communicate with the ASP.NET Core Web API.
+
+### Configuration
+
+HttpClient is registered using:
+
+```typescript
+provideHttpClient()
+```
+
+The API communication service is located at:
+
+```text
+src/app/services/health.service.ts
+```
+
+The current health-check endpoint is:
 
 ```text
 GET https://localhost:7174/api/health
 ```
 
-The URL is configured in `src/app/services/health.service.ts`. If the backend uses a different local port, update the service accordingly. Environment-specific API configuration will be introduced in a later milestone.
+The backend URL may vary depending on the local development configuration.
 
-### How It Works
+### Connection Flow
 
-1. Angular registers `provideHttpClient()` in `app.config.ts`.
-2. `HealthService` uses `HttpClient` to request `/api/health`.
-3. The root component triggers the request when **Test Backend Connection** is clicked.
-4. The response updates an Angular signal displayed in the template.
-5. If the API cannot be reached, the interface displays a connection-error message.
-
-### Run the Full-Stack Test
-
-1. Start `FinancialPlatform.Api` in Visual Studio using `F5`.
-2. Start the Angular development server with `npm start`.
-3. Open `http://localhost:4200`.
-4. Click **Test Backend Connection**.
+1. The user clicks Test Backend Connection.
+2. The Angular component calls HealthService.
+3. HealthService sends an HTTP GET request.
+4. ASP.NET Core processes the request.
+5. The backend returns JSON.
+6. Angular displays the response.
 
 Expected message:
 
@@ -131,25 +168,41 @@ Expected message:
 Connected: Backend API is running.
 ```
 
-The backend must be running, its HTTPS development certificate must be trusted, and its CORS policy must allow `http://localhost:4200`.
+## Database Integration
+
+The ASP.NET Core backend now uses SQL Server and Entity Framework Core.
+
+The backend includes database-backed endpoints for retrieving and creating financial document metadata.
+
+The Angular frontend has not yet implemented the financial document management interface. That integration is planned for Milestone 8.
 
 ## Planned Features
 
 - Reusable navigation and layout components
-- Document upload and management interface
-- Financial KPI cards and interactive charts
-- Searchable, filterable financial data tables
+- Financial document upload interface
+- Document list and management page
+- Financial data tables
+- Search, sorting, and filtering
+- Financial dashboard KPI cards
+- Charts and interactive visualizations
+- Reporting-period and company comparisons
 - Form validation and notifications
-- Login and role-based navigation
-- Additional API services for documents, analysis, and reporting
+- User authentication
+- Role-based navigation
+- Additional HTTP services for financial documents and reports
 - Automated component and service tests
-- Environment-specific API configuration
 
 ## Development Progress
 
 - **Angular initialization:** Completed
 - **PrimeNG integration:** Completed
-- **Backend connection using `HttpClient`:** Completed Locally
-- **Database-backed features:** Next phase
+- **Backend HTTP integration:** Completed
+- **Backend database integration:** Completed
+- **Frontend document management:** Next
+- **Financial dashboards and reporting:** Planned
 
-See the [main project README](../README.md) and [Development Log](../docs/Development%20Log.md) for the full roadmap.
+## Documentation
+
+- [Main Project README](../README.md)
+- [Backend README](../backend/README.md)
+- [Development Log](../docs/Development%20Log.md)
